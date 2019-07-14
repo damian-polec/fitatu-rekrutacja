@@ -65,6 +65,29 @@
                 this.employee = user;
                 this.isEditing = true;
             },
+            onSubmit () {
+                const id = this.employee.id;
+                const employeeData = {
+                    name: this.employee.name,
+                    email: this.employee.email,
+                    address: {
+                        street: this.employee.address.street,
+                        suite: this.employee.address.suite,
+                        city: this.employee.address.city
+                    },
+                    phone: this.employee.phone
+                }
+                axios.put(`https://jsonplaceholder.typicode.com/users/${id}`, {
+                    body : JSON.stringify(employeeData),
+                    headers: {
+                        "Content-Type" : "application/json"
+                    }
+                    })
+                    .then(res => {
+                        this.isEditing = false;
+                    })
+                    .catch(err => console.log(err))
+            }
         },
         components: {
             Form,
