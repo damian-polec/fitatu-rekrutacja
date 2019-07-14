@@ -1,0 +1,4 @@
+.idea
+dist
+npm-debug.*
+node_modules/*
